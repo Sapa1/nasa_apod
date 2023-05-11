@@ -13,12 +13,27 @@ dependencies:
     sdk: flutter
 
   cupertino_icons: ^1.0.2
+  flutter_bloc: ^8.1.2
+  dio: ^5.1.2
+  flutter_modular: ^5.0.3
+  dartz: ^0.10.1
+  freezed: ^2.3.3
+  equatable: ^2.0.5
+  connectivity_plus: ^4.0.0
+  shared_preferences: ^2.1.1
+
+scripts:
+  build: "flutter packages run build_runner build"
+  watch: "flutter packages run build_runner watch"
+  delete: "flutter packages run build_runner build --delete-conflicting-outputs"
+  format: "flutter format --line-length 100 ./lib/core/ ./lib/modules/ ./lib/main.dart ./lib/app_module.dart ./lib/app_widget.dart ./lib/firebase_options.dart"
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
 
   flutter_lints: ^2.0.0
+  build_runner: ^2.4.2
 
 flutter:
   uses-material-design: true
