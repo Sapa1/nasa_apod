@@ -11,7 +11,7 @@ class HomePage extends StatelessWidget {
       body: Center(
         child: ElevatedButton(
           onPressed: () {
-            Modular.to.pushNamed(AppRoutes.detail);
+            Modular.to.pushNamed(AppRoutes.detailsPage);
           },
           child: const Text('Home page'),
         ),

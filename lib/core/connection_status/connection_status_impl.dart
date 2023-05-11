@@ -5,8 +5,6 @@ import 'package:flutter/material.dart';
 
 import 'connection_status.dart';
 
-//TODO: verificar necessidade desse arquivo
-
 class ConnectionStatusImpl implements ConnectionStatus {
   @override
   Future<bool> isConnected() async {
