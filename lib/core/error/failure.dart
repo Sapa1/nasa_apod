@@ -26,13 +26,6 @@ class LocalAuthenticationFailure extends Failure {
   List<Object> get props => [];
 }
 
-class LocalSecureStorageFailure extends Failure {
-  const LocalSecureStorageFailure({required String message})
-      : super(message: message);
-  @override
-  List<Object> get props => [];
-}
-
 class LocalStorageFailure extends Failure {
   const LocalStorageFailure({required String message})
       : super(message: message);

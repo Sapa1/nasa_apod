@@ -23,7 +23,7 @@ class HomeModule extends Module {
           child: (context, args) => const HomePage(),
         ),
         ChildRoute(
-          AppRoutes.detail,
+          AppRoutes.detailsPage,
           child: (context, args) => const DetailPage(),
         ),
       ];
