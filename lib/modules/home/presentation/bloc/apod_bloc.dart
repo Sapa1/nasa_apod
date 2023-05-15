@@ -25,7 +25,7 @@ class ApodBloc extends Bloc<ApodEvent, ApodState> {
 
         emit(
           response.fold(
-            (failure) => const ApodState.failure(''),
+            (failure) => ApodState.failure(failure.message),
             (result) => ApodState.success(apodEntity: result.entity),
           ),
         );

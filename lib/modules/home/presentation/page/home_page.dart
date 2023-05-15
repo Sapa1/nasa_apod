@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_modular/flutter_modular.dart';
+import 'package:nasa_apod/core/const/routes.dart';
 
 import '../bloc/apod_bloc.dart';
 import '../bloc/apod_event.dart';
@@ -29,30 +30,46 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      // appBar: AppBar(
-      //   title: const Text(AppStrings.titleOfProject),
-      // ),
       body: SafeArea(
-        child: Center(
-          child: BlocBuilder<ApodBloc, ApodState>(
-            bloc: _apodBloc,
-            builder: (context, state) {
-              return state.maybeWhen(
-                orElse: () => const SizedBox(),
-                loading: () => const SizedBox(),
-                failure: (message) => const SizedBox(),
-                success: (apodEntity) => ListView.builder(
-                  shrinkWrap: true,
-                  itemCount: apodEntity.length,
-                  itemBuilder: (context, index) => ImageApodWidget(
-                    url: apodEntity[index].url,
-                    title: apodEntity[index].title,
-                    date: apodEntity[index].date,
-                    description: apodEntity[index].description,
-                  ),
+        child: SingleChildScrollView(
+          child: Column(
+            children: [
+              Center(
+                child: BlocBuilder<ApodBloc, ApodState>(
+                  bloc: _apodBloc,
+                  builder: (context, state) {
+                    return state.maybeWhen(
+                      orElse: () => const Center(
+                        child: Text('OrElse state'),
+                      ),
+                      loading: () => const Center(
+                        child: Text('Loading state'),
+                      ),
+                      failure: (message) => const Center(
+                        child: Text('Failure state'),
+                      ),
+                      success: (apodEntity) => ListView.builder(
+                        physics: const NeverScrollableScrollPhysics(),
+                        shrinkWrap: true,
+                        itemCount: apodEntity.length,
+                        itemBuilder: (context, index) => ImageApodWidget(
+                          url: apodEntity[index].url,
+                          title: apodEntity[index].title,
+                          date: apodEntity[index].date,
+                          description: apodEntity[index].description,
+                          onTap: () => Modular.to.pushNamed(
+                            AppRoutes.detailsPage,
+                            arguments: {
+                              'entity': apodEntity[index],
+                            },
+                          ),
+                        ),
+                      ),
+                    );
+                  },
                 ),
-              );
-            },
+              ),
+            ],
           ),
         ),
       ),

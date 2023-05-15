@@ -1,3 +1,4 @@
+import 'package:flutter/material.dart';
 import 'package:nasa_apod/modules/home/data/model/apod_response.dart';
 
 import '../../../../core/dio/nasa_apod_dio.dart';
@@ -10,17 +11,22 @@ class ApodDataSourceImpl implements ApodDataSource {
 
   @override
   Future<ApodResponse> getApod() async {
-    final result = await nasaApodDio.get(
-      '',
-      queryParameters: {
-        "start_date": "2023-05-10",
-      },
-    );
-    //TODO: fazer tratamento para não receber video
-    if (result.data is List) {
-      return ApodResponse.fromMap(result.data);
-    } else {
-      return ApodResponse.fromMap([result.data]);
+    try {
+      final result = await nasaApodDio.get(
+        '',
+        queryParameters: {
+          "start_date": "2023-05-10",
+        },
+      );
+      //TODO: fazer tratamento para não receber video
+      if (result.data is List) {
+        return ApodResponse.fromMap(result.data);
+      } else {
+        return ApodResponse.fromMap([result.data]);
+      }
+    } catch (e) {
+      debugPrint('Caindo aq sem net $e');
+      rethrow;
     }
   }
 }
