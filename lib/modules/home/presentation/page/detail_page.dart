@@ -1,18 +1,22 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_modular/flutter_modular.dart';
+import 'package:nasa_apod/modules/home/domain/entities/apod_entity.dart';
 
 class DetailPage extends StatelessWidget {
-  const DetailPage({super.key});
+  final ApodEntity entity;
+  const DetailPage({
+    required this.entity,
+    super.key,
+  });
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(),
       body: Center(
-        child: ElevatedButton(
-          onPressed: () {
-            Modular.to.pop();
-          },
-          child: const Text('Detail page'),
+        child: Column(
+          children: [
+            Text(entity.title),
+          ],
         ),
       ),
     );

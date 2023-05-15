@@ -37,7 +37,9 @@ class HomeModule extends Module {
         ),
         ChildRoute(
           AppRoutes.detailsPage,
-          child: (context, args) => const DetailPage(),
+          child: (context, args) => DetailPage(
+            entity: args.data['entity'],
+          ),
         ),
       ];
 }

@@ -39,6 +39,8 @@ class ConnectionStatusImpl implements ConnectionStatus {
         }
       } on Exception catch (e) {
         debugPrint('No internet connection: $e');
+      } catch (e) {
+        debugPrint('No internet connection: $e');
       }
     }
 
