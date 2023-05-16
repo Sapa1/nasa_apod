@@ -15,7 +15,7 @@ class ApodDataSourceImpl implements ApodDataSource {
       final result = await nasaApodDio.get(
         '',
         queryParameters: {
-          "start_date": "2023-05-10",
+          "start_date": "2023-05-05",
         },
       );
       //TODO: fazer tratamento para não receber video

@@ -8,14 +8,9 @@ class AppWidget extends StatelessWidget {
   Widget build(BuildContext context) => MaterialApp.router(
         theme:
             //TODO: decidir se eu prefiro a transição normal ou essa
-            //  ThemeData.dark(),
+            // ThemeData.dark(),
             ThemeData(
-          pageTransitionsTheme: const PageTransitionsTheme(
-            builders: {
-              TargetPlatform.iOS: CupertinoPageTransitionsBuilder(),
-              TargetPlatform.android: CupertinoPageTransitionsBuilder(),
-            },
-          ),
+          scaffoldBackgroundColor: Colors.transparent,
         ),
         title: 'Nasa APOD',
         routeInformationParser: Modular.routeInformationParser,
