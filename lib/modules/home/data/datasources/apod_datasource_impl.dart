@@ -10,12 +10,12 @@ class ApodDataSourceImpl implements ApodDataSource {
   ApodDataSourceImpl({required this.nasaApodDio});
 
   @override
-  Future<ApodResponse> getApod() async {
+  Future<ApodResponse> getApod(startDate) async {
     try {
       final result = await nasaApodDio.get(
         '',
         queryParameters: {
-          "start_date": "2023-05-05",
+          "start_date": startDate,
         },
       );
       //TODO: fazer tratamento para não receber video
