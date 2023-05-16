@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:flutter_svg/svg.dart';
 
@@ -8,6 +9,7 @@ import '../../../../../core/styles/colors.dart';
 import '../../../domain/entities/apod_entity.dart';
 import '../../bloc/apod_bloc.dart';
 import '../../bloc/apod_event.dart';
+import '../../bloc/apod_state.dart';
 import '../../widget/image_apod_widget.dart';
 import '../../widget/text_form_field_widget.dart';
 
@@ -36,8 +38,6 @@ class _ApodSectionState extends State<ApodSection> {
   void initState() {
     super.initState();
 
-    // widget.scrollController.addListener(scrollListener);
-
     filteredList.addAll(widget.apodEntityList);
 
     _focusNode = FocusNode();
@@ -49,127 +49,77 @@ class _ApodSectionState extends State<ApodSection> {
   void dispose() {
     super.dispose();
 
+    _scrollController.dispose();
     _focusNode.dispose();
     _textEditingController.dispose();
   }
 
-  // @override
-  // Widget build(BuildContext context) {
-  //   // if (filteredList == null) {
-  //   //   return buildInitial(context);
-  //   // } else {
-  //   return buildFiltered(context);
-  //   // }
-  // }
-
-  // Widget buildInitial(BuildContext context) => Column(
-  //       children: [
-  //         const SizedBox(height: 20),
-  //         SvgPicture.asset(
-  //           'assets/images/nasa_logo.svg',
-  //           width: 75,
-  //           height: 75,
-  //         ),
-  //         Padding(
-  //           padding: const EdgeInsets.only(
-  //             top: 20,
-  //             bottom: 20,
-  //           ),
-  //           child: TextFormFieldWidget(
-  //             hintText: 'Search by title or date',
-  //             focusNode: _focusNode,
-  //             cursorColor: AppColors.gray,
-  //             autofocus: false,
-  //             controller: _textEditingController,
-  //             keyboardType: TextInputType.name,
-  //             onChanged: (value) => searchImage(
-  //               entityList: widget.apodEntityList,
-  //               search: value,
-  //             ),
-  //           ),
-  //         ),
-  //         Flexible(
-  //           child: ListView.builder(
-  //             shrinkWrap: true,
-  //             primary: true,
-  //             // reverse: true,
-
-  //             itemCount: widget.apodEntityList.length,
-  //             itemBuilder: (context, index) {
-  //               return Padding(
-  //                 padding: const EdgeInsets.symmetric(vertical: 8),
-  //                 child: ImageApodWidget(
-  //                   type: WidgetType.mainInfo,
-  //                   url: widget.apodEntityList[index].url,
-  //                   title: widget.apodEntityList[index].title,
-  //                   date: widget.apodEntityList[index].date,
-  //                   description: widget.apodEntityList[index].description,
-  //                   onTap: () => Modular.to.pushNamed(
-  //                     AppRoutes.detailsPage,
-  //                     arguments: {
-  //                       'entity': widget.apodEntityList[index],
-  //                     },
-  //                   ),
-  //                 ),
-  //               );
-  //             },
-  //           ),
-  //         ),
-  //       ],
-  //     );
-
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-        const SizedBox(height: 20),
-        SvgPicture.asset(
-          'assets/images/nasa_logo.svg',
-          width: 75,
-          height: 75,
-        ),
-        Padding(
-          padding: const EdgeInsets.only(
-            top: 20,
-            bottom: 20,
+    return BlocListener<ApodBloc, ApodState>(
+      bloc: widget.apodBloc,
+      listener: (context, state) {
+        state.maybeWhen(
+          orElse: () => const Center(
+            child: Text('Orelse'),
           ),
-          child: TextFormFieldWidget(
-            hintText: 'Search by title or date',
-            focusNode: _focusNode,
-            cursorColor: AppColors.gray,
-            autofocus: false,
-            controller: _textEditingController,
-            keyboardType: TextInputType.name,
-            onChanged: (value) => searchImage(
-              entityList: widget.apodEntityList,
-              search: value,
+          success: (apodEntity) {
+            filteredList.clear();
+            filteredList.addAll(apodEntity);
+          },
+        );
+      },
+      child: Column(
+        children: [
+          const SizedBox(height: 20),
+          SvgPicture.asset(
+            'assets/images/nasa_logo.svg',
+            width: 75,
+            height: 75,
+          ),
+          Padding(
+            padding: const EdgeInsets.only(
+              top: 20,
+              bottom: 20,
+            ),
+            child: TextFormFieldWidget(
+              hintText: 'Search by title or date',
+              focusNode: _focusNode,
+              cursorColor: AppColors.gray,
+              autofocus: false,
+              controller: _textEditingController,
+              keyboardType: TextInputType.name,
+              onChanged: (value) => searchImage(
+                entityList: widget.apodEntityList,
+                search: value,
+              ),
             ),
           ),
-        ),
-        Flexible(
-          child: ListView.builder(
-            controller: _scrollController,
-            shrinkWrap: true,
-            itemCount: filteredList.length,
-            itemBuilder: (context, index) => Padding(
-              padding: const EdgeInsets.symmetric(vertical: 8),
-              child: ImageApodWidget(
-                type: WidgetType.mainInfo,
-                url: filteredList[index].url,
-                title: filteredList[index].title,
-                date: filteredList[index].date,
-                description: filteredList[index].description,
-                onTap: () => Modular.to.pushNamed(
-                  AppRoutes.detailsPage,
-                  arguments: {
-                    'entity': filteredList[index],
-                  },
+          Flexible(
+            child: ListView.builder(
+              controller: _scrollController,
+              shrinkWrap: true,
+              itemCount: filteredList.length,
+              itemBuilder: (context, index) => Padding(
+                padding: const EdgeInsets.symmetric(vertical: 8),
+                child: ImageApodWidget(
+                  type: WidgetType.mainInfo,
+                  url: filteredList[index].url,
+                  title: filteredList[index].title,
+                  date: filteredList[index].date,
+                  description: filteredList[index].description,
+                  onTap: () => Modular.to.pushNamed(
+                    AppRoutes.detailsPage,
+                    arguments: {
+                      'entity': filteredList[index],
+                    },
+                  ),
                 ),
               ),
             ),
           ),
-        ),
-      ],
+        ],
+      ),
     );
   }
 
@@ -211,14 +161,12 @@ class _ApodSectionState extends State<ApodSection> {
     widget.apodBloc.add(ApodEvent.getApod(startDate: formattedDateTime));
   }
 
-  void scrollListener() {
+  void scrollListener() async {
     if (_scrollController.position.pixels ==
             _scrollController.position.maxScrollExtent &&
         filteredList.length == widget.apodEntityList.length) {
-      getNextDates(filteredList.last.date);
-      print('aqui chama');
-    } else {
-      print('aqui nao chama');
+      await getNextDates(filteredList.last.date);
+      _scrollController.position.context;
     }
   }
 }

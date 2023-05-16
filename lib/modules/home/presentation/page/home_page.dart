@@ -18,9 +18,6 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> with KeyboardManager {
   late final ApodBloc _apodBloc;
-  // late final FocusNode _focusNode;
-  // late final TextEditingController _textEditingController;
-  // final ScrollController scrollController = ScrollController();
 
   List<ApodEntity> responseList = [];
 
@@ -30,18 +27,7 @@ class _HomePageState extends State<HomePage> with KeyboardManager {
 
     _apodBloc = Modular.get<ApodBloc>();
 
-    // _focusNode = FocusNode();
-    // _textEditingController = TextEditingController();
-
     getStartDate();
-  }
-
-  @override
-  void dispose() {
-    super.dispose();
-
-    // _focusNode.dispose();
-    // _textEditingController.dispose();
   }
 
   @override
@@ -56,38 +42,21 @@ class _HomePageState extends State<HomePage> with KeyboardManager {
       child: GestureDetector(
         onTap: () => _onTap(context),
         child: Scaffold(
-          floatingActionButton: FloatingActionButton(onPressed: () {
-            final dateTime = DateTime.now();
-            final finalDateTime = dateTime.subtract(const Duration(days: 20));
-
-            String formattedDateTime =
-                '${finalDateTime.year.toString().padLeft(4, '0')}-'
-                '${finalDateTime.month.toString().padLeft(2, '0')}-'
-                '${finalDateTime.day.toString().padLeft(2, '0')}';
-
-            _apodBloc.add(ApodEvent.getApod(startDate: formattedDateTime));
-          }),
           body: SafeArea(
             child: BlocBuilder<ApodBloc, ApodState>(
               bloc: _apodBloc,
               builder: (context, state) {
                 return state.maybeWhen(
                   orElse: () => const Center(
-                    child: Text('OrElse state'),
+                    child: Text('Orelse'),
                   ),
-                  loading: () => const Center(
-                    child: Text('Loading state'),
+                  failure: (e) => const Center(
+                    child: Text('failure'),
                   ),
-                  failure: (message) => const Center(
-                    child: Text('Failure state'),
+                  success: (entity) => ApodSection(
+                    apodEntityList: entity,
+                    apodBloc: _apodBloc,
                   ),
-                  success: (apodEntity) {
-                    print(apodEntity);
-                    return ApodSection(
-                      apodEntityList: apodEntity,
-                      apodBloc: _apodBloc,
-                    );
-                  },
                 );
               },
             ),

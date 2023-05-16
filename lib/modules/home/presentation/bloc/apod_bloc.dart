@@ -18,7 +18,7 @@ class ApodBloc extends Bloc<ApodEvent, ApodState> {
     ApodEvent event,
     Emitter<ApodState> emit,
   ) async {
-    emit(const ApodState.loading());
+    // emit(const ApodState.loading());
     await event.when(
       getApod: (startDate) async {
         final response = await getApodUseCase(startDate);
@@ -31,7 +31,6 @@ class ApodBloc extends Bloc<ApodEvent, ApodState> {
           }),
         );
       },
-      getNextPage: (e) async {},
     );
   }
 }

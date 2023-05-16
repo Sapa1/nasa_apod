@@ -14,7 +14,7 @@ class HomeModule extends Module {
   @override
   List<Bind> get binds => [
         //Bloc
-        Bind.factory<ApodBloc>((i) => ApodBloc(getApodUseCase: i.get())),
+        Bind.singleton<ApodBloc>((i) => ApodBloc(getApodUseCase: i.get())),
 
         //UseCases
         Bind.factory<GetApodUseCase>(
