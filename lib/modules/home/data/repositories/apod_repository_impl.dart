@@ -18,9 +18,9 @@ class ApodRepositoryImpl extends ApodRepository with HandleFailures {
   );
 
   @override
-  Future<Either<Failure, ApodResponse>> getApod() async {
+  Future<Either<Failure, ApodResponse>> getApod(startDate) async {
     try {
-      final result = await _apodDataSource.getApod();
+      final result = await _apodDataSource.getApod(startDate);
       return Right(result);
     } on DioError catch (e, s) {
       return Left(await handleFailure(_connectionStatus, e, s));

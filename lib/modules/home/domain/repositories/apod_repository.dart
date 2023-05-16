@@ -4,5 +4,5 @@ import '../../../../core/error/failure.dart';
 import '../../data/model/apod_response.dart';
 
 abstract class ApodRepository {
-  Future<Either<Failure, ApodResponse>> getApod();
+  Future<Either<Failure, ApodResponse>> getApod(String startDate);
 }

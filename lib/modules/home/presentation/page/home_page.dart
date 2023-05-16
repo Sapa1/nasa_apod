@@ -19,7 +19,7 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> with KeyboardManager {
   late final ApodBloc _apodBloc;
 
-  List<ApodEntity>? filteredList;
+  List<ApodEntity> responseList = [];
 
   @override
   void initState() {
@@ -27,7 +27,7 @@ class _HomePageState extends State<HomePage> with KeyboardManager {
 
     _apodBloc = Modular.get<ApodBloc>();
 
-    _apodBloc.add(const ApodEvent.getApod());
+    getStartDate();
   }
 
   @override
@@ -43,37 +43,39 @@ class _HomePageState extends State<HomePage> with KeyboardManager {
         onTap: () => _onTap(context),
         child: Scaffold(
           body: SafeArea(
-            child: SingleChildScrollView(
-              child: Column(
-                children: [
-                  Center(
-                    child: BlocBuilder<ApodBloc, ApodState>(
-                      bloc: _apodBloc,
-                      builder: (context, state) {
-                        return state.maybeWhen(
-                          orElse: () => const Center(
-                            child: Text('OrElse state'),
-                          ),
-                          loading: () => const Center(
-                            child: Text('Loading state'),
-                          ),
-                          failure: (message) => const Center(
-                            child: Text('Failure state'),
-                          ),
-                          success: (apodEntity) => ApodSection(
-                            apodEntityList: apodEntity,
-                          ),
-                        );
-                      },
-                    ),
+            child: BlocBuilder<ApodBloc, ApodState>(
+              bloc: _apodBloc,
+              builder: (context, state) {
+                return state.maybeWhen(
+                  orElse: () => const Center(
+                    child: Text('Orelse'),
                   ),
-                ],
-              ),
+                  failure: (e) => const Center(
+                    child: Text('failure'),
+                  ),
+                  success: (entity) => ApodSection(
+                    apodEntityList: entity,
+                    apodBloc: _apodBloc,
+                  ),
+                );
+              },
             ),
           ),
         ),
       ),
     );
+  }
+
+  void getStartDate() {
+    final dateTime = DateTime.now();
+    final finalDateTime = dateTime.subtract(const Duration(days: 10));
+
+    String formattedDateTime =
+        '${finalDateTime.year.toString().padLeft(4, '0')}-'
+        '${finalDateTime.month.toString().padLeft(2, '0')}-'
+        '${finalDateTime.day.toString().padLeft(2, '0')}';
+
+    _apodBloc.add(ApodEvent.getApod(startDate: formattedDateTime));
   }
 
   void _onTap(BuildContext context) {

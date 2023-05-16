@@ -16,19 +16,20 @@ final _privateConstructorUsedError = UnsupportedError(
 
 /// @nodoc
 mixin _$ApodEvent {
+  String get startDate => throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() getApod,
+    required TResult Function(String startDate) getApod,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? getApod,
+    TResult? Function(String startDate)? getApod,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? getApod,
+    TResult Function(String startDate)? getApod,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -48,12 +49,18 @@ mixin _$ApodEvent {
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
+
+  @JsonKey(ignore: true)
+  $ApodEventCopyWith<ApodEvent> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
 abstract class $ApodEventCopyWith<$Res> {
   factory $ApodEventCopyWith(ApodEvent value, $Res Function(ApodEvent) then) =
       _$ApodEventCopyWithImpl<$Res, ApodEvent>;
+  @useResult
+  $Res call({String startDate});
 }
 
 /// @nodoc
@@ -65,13 +72,30 @@ class _$ApodEventCopyWithImpl<$Res, $Val extends ApodEvent>
   final $Val _value;
   // ignore: unused_field
   final $Res Function($Val) _then;
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? startDate = null,
+  }) {
+    return _then(_value.copyWith(
+      startDate: null == startDate
+          ? _value.startDate
+          : startDate // ignore: cast_nullable_to_non_nullable
+              as String,
+    ) as $Val);
+  }
 }
 
 /// @nodoc
-abstract class _$$_ApodEventGetApodCopyWith<$Res> {
+abstract class _$$_ApodEventGetApodCopyWith<$Res>
+    implements $ApodEventCopyWith<$Res> {
   factory _$$_ApodEventGetApodCopyWith(
           _$_ApodEventGetApod value, $Res Function(_$_ApodEventGetApod) then) =
       __$$_ApodEventGetApodCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call({String startDate});
 }
 
 /// @nodoc
@@ -81,51 +105,76 @@ class __$$_ApodEventGetApodCopyWithImpl<$Res>
   __$$_ApodEventGetApodCopyWithImpl(
       _$_ApodEventGetApod _value, $Res Function(_$_ApodEventGetApod) _then)
       : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? startDate = null,
+  }) {
+    return _then(_$_ApodEventGetApod(
+      startDate: null == startDate
+          ? _value.startDate
+          : startDate // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
 }
 
 /// @nodoc
 
 class _$_ApodEventGetApod implements _ApodEventGetApod {
-  const _$_ApodEventGetApod();
+  const _$_ApodEventGetApod({required this.startDate});
+
+  @override
+  final String startDate;
 
   @override
   String toString() {
-    return 'ApodEvent.getApod()';
+    return 'ApodEvent.getApod(startDate: $startDate)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$_ApodEventGetApod);
+        (other.runtimeType == runtimeType &&
+            other is _$_ApodEventGetApod &&
+            (identical(other.startDate, startDate) ||
+                other.startDate == startDate));
   }
 
   @override
-  int get hashCode => runtimeType.hashCode;
+  int get hashCode => Object.hash(runtimeType, startDate);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$_ApodEventGetApodCopyWith<_$_ApodEventGetApod> get copyWith =>
+      __$$_ApodEventGetApodCopyWithImpl<_$_ApodEventGetApod>(this, _$identity);
 
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() getApod,
+    required TResult Function(String startDate) getApod,
   }) {
-    return getApod();
+    return getApod(startDate);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? getApod,
+    TResult? Function(String startDate)? getApod,
   }) {
-    return getApod?.call();
+    return getApod?.call(startDate);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? getApod,
+    TResult Function(String startDate)? getApod,
     required TResult orElse(),
   }) {
     if (getApod != null) {
-      return getApod();
+      return getApod(startDate);
     }
     return orElse();
   }
@@ -160,5 +209,13 @@ class _$_ApodEventGetApod implements _ApodEventGetApod {
 }
 
 abstract class _ApodEventGetApod implements ApodEvent {
-  const factory _ApodEventGetApod() = _$_ApodEventGetApod;
+  const factory _ApodEventGetApod({required final String startDate}) =
+      _$_ApodEventGetApod;
+
+  @override
+  String get startDate;
+  @override
+  @JsonKey(ignore: true)
+  _$$_ApodEventGetApodCopyWith<_$_ApodEventGetApod> get copyWith =>
+      throw _privateConstructorUsedError;
 }
