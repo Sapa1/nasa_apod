@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:nasa_apod/modules/home/domain/entities/apod_entity.dart';
 
+import '../widget/image_apod_widget.dart';
+
 class DetailPage extends StatelessWidget {
   final ApodEntity entity;
   const DetailPage({
@@ -15,7 +17,13 @@ class DetailPage extends StatelessWidget {
       body: Center(
         child: Column(
           children: [
-            Text(entity.title),
+            ImageApodWidget(
+              type: WidgetType.allInfo,
+              url: entity.url,
+              title: entity.title,
+              date: entity.date,
+              description: entity.description,
+            ),
           ],
         ),
       ),
