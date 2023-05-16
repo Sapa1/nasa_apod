@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:nasa_apod/core/styles/colors.dart';
 
 class TextFormFieldWidget extends StatelessWidget {
@@ -8,6 +9,8 @@ class TextFormFieldWidget extends StatelessWidget {
   final TextInputType? keyboardType;
   final TextEditingController controller;
   final String? hintText;
+  final void Function(String)? onChanged;
+  final List<TextInputFormatter>? inputFormatters;
   const TextFormFieldWidget({
     required this.controller,
     this.focusNode,
@@ -15,6 +18,8 @@ class TextFormFieldWidget extends StatelessWidget {
     this.autofocus,
     this.keyboardType,
     this.hintText,
+    this.onChanged,
+    this.inputFormatters,
     super.key,
   });
 
@@ -50,6 +55,8 @@ class TextFormFieldWidget extends StatelessWidget {
         cursorColor: cursorColor,
         keyboardType: keyboardType,
         style: style,
+        inputFormatters: inputFormatters,
+        onChanged: onChanged,
         decoration: InputDecoration(
           hintText: hintText,
           hintStyle: hintStyle,
@@ -58,7 +65,7 @@ class TextFormFieldWidget extends StatelessWidget {
           filled: true,
           enabledBorder: enabledBorder,
           focusedBorder: focusedBorder,
-          suffixIcon: const SizedBox(),
+          suffixIcon: const Icon(Icons.search),
         ),
       );
 }
