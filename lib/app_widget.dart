@@ -6,10 +6,7 @@ class AppWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => MaterialApp.router(
-        theme:
-            //TODO: decidir se eu prefiro a transição normal ou essa
-            // ThemeData.dark(),
-            ThemeData(
+        theme: ThemeData(
           scaffoldBackgroundColor: Colors.transparent,
         ),
         title: 'Nasa APOD',

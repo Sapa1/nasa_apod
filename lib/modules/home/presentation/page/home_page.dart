@@ -2,7 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:nasa_apod/modules/home/presentation/page/sections/apod_section.dart';
+import 'package:nasa_apod/modules/home/presentation/page/sections/loading_apod_section.dart';
 
+import '../../../../core/const/images.dart';
 import '../../../../core/helpers/keyboard_manager.dart';
 import '../../domain/entities/apod_entity.dart';
 import '../bloc/apod_bloc.dart';
@@ -35,24 +37,36 @@ class _HomePageState extends State<HomePage> with KeyboardManager {
     return Container(
       decoration: const BoxDecoration(
         image: DecorationImage(
-          image: AssetImage('assets/images/stars.jpg'),
+          image: AssetImage(AppImages.backgroundImage),
           fit: BoxFit.cover,
         ),
       ),
       child: GestureDetector(
         onTap: () => _onTap(context),
+        onPanCancel: () => _onTap(context),
         child: Scaffold(
           body: SafeArea(
             child: BlocBuilder<ApodBloc, ApodState>(
               bloc: _apodBloc,
               builder: (context, state) {
                 return state.maybeWhen(
-                  orElse: () => const Center(
-                    child: Text('Orelse'),
-                  ),
+                  orElse: () => const SizedBox(),
                   failure: (e) => const Center(
                     child: Text('failure'),
                   ),
+                  loading: () => const LoadingApodSection(),
+                  // tentativeLoading: (entity) => Stack(
+                  //   children: [
+                  //     ApodSection(
+                  //       apodEntityList: entity,
+                  //       apodBloc: _apodBloc,
+                  //     ),
+                  //     const Positioned(
+                  //       bottom: 0,
+                  //       child: CircularProgressIndicator(),
+                  //     ),
+                  //   ],
+                  // ),
                   success: (entity) => ApodSection(
                     apodEntityList: entity,
                     apodBloc: _apodBloc,

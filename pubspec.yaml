@@ -23,6 +23,7 @@ dependencies:
   freezed_annotation: ^2.2.0
   cached_network_image: ^3.2.3
   flutter_svg: ^2.0.5
+  lottie: ^2.3.2
 
 scripts:
   build: "flutter packages run build_runner build"
@@ -43,6 +44,7 @@ flutter:
 
   assets:
     - assets/images/
+    - assets/animations/
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware
@@ -51,8 +53,7 @@ flutter:
   # https://flutter.dev/assets-and-images/#from-packages
 
   fonts:
-    - family: Montserrat
+    - family: Blinker
       fonts:
-        - asset: assets/fonts/Montserrat-Bold.ttf
-        - asset: assets/fonts/Montserrat-Regular.ttf
-        - asset: assets/fonts/Montserrat-Light.ttf
+        - asset: assets/fonts/Blinker-Bold.ttf
+        - asset: assets/fonts/Blinker-Regular.ttf

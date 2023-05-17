@@ -46,7 +46,7 @@ mixin _$ApodState {
     required TResult Function(_ApodStateInitial value) initial,
     required TResult Function(_ApodStateLoading value) loading,
     required TResult Function(_ApodStateFailure value) failure,
-    required TResult Function(_ApodStateConfirmed value) success,
+    required TResult Function(_ApodStateSuccess value) success,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -54,7 +54,7 @@ mixin _$ApodState {
     TResult? Function(_ApodStateInitial value)? initial,
     TResult? Function(_ApodStateLoading value)? loading,
     TResult? Function(_ApodStateFailure value)? failure,
-    TResult? Function(_ApodStateConfirmed value)? success,
+    TResult? Function(_ApodStateSuccess value)? success,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -62,7 +62,7 @@ mixin _$ApodState {
     TResult Function(_ApodStateInitial value)? initial,
     TResult Function(_ApodStateLoading value)? loading,
     TResult Function(_ApodStateFailure value)? failure,
-    TResult Function(_ApodStateConfirmed value)? success,
+    TResult Function(_ApodStateSuccess value)? success,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -163,7 +163,7 @@ class _$_ApodStateInitial implements _ApodStateInitial {
     required TResult Function(_ApodStateInitial value) initial,
     required TResult Function(_ApodStateLoading value) loading,
     required TResult Function(_ApodStateFailure value) failure,
-    required TResult Function(_ApodStateConfirmed value) success,
+    required TResult Function(_ApodStateSuccess value) success,
   }) {
     return initial(this);
   }
@@ -174,7 +174,7 @@ class _$_ApodStateInitial implements _ApodStateInitial {
     TResult? Function(_ApodStateInitial value)? initial,
     TResult? Function(_ApodStateLoading value)? loading,
     TResult? Function(_ApodStateFailure value)? failure,
-    TResult? Function(_ApodStateConfirmed value)? success,
+    TResult? Function(_ApodStateSuccess value)? success,
   }) {
     return initial?.call(this);
   }
@@ -185,7 +185,7 @@ class _$_ApodStateInitial implements _ApodStateInitial {
     TResult Function(_ApodStateInitial value)? initial,
     TResult Function(_ApodStateLoading value)? loading,
     TResult Function(_ApodStateFailure value)? failure,
-    TResult Function(_ApodStateConfirmed value)? success,
+    TResult Function(_ApodStateSuccess value)? success,
     required TResult orElse(),
   }) {
     if (initial != null) {
@@ -277,7 +277,7 @@ class _$_ApodStateLoading implements _ApodStateLoading {
     required TResult Function(_ApodStateInitial value) initial,
     required TResult Function(_ApodStateLoading value) loading,
     required TResult Function(_ApodStateFailure value) failure,
-    required TResult Function(_ApodStateConfirmed value) success,
+    required TResult Function(_ApodStateSuccess value) success,
   }) {
     return loading(this);
   }
@@ -288,7 +288,7 @@ class _$_ApodStateLoading implements _ApodStateLoading {
     TResult? Function(_ApodStateInitial value)? initial,
     TResult? Function(_ApodStateLoading value)? loading,
     TResult? Function(_ApodStateFailure value)? failure,
-    TResult? Function(_ApodStateConfirmed value)? success,
+    TResult? Function(_ApodStateSuccess value)? success,
   }) {
     return loading?.call(this);
   }
@@ -299,7 +299,7 @@ class _$_ApodStateLoading implements _ApodStateLoading {
     TResult Function(_ApodStateInitial value)? initial,
     TResult Function(_ApodStateLoading value)? loading,
     TResult Function(_ApodStateFailure value)? failure,
-    TResult Function(_ApodStateConfirmed value)? success,
+    TResult Function(_ApodStateSuccess value)? success,
     required TResult orElse(),
   }) {
     if (loading != null) {
@@ -417,7 +417,7 @@ class _$_ApodStateFailure implements _ApodStateFailure {
     required TResult Function(_ApodStateInitial value) initial,
     required TResult Function(_ApodStateLoading value) loading,
     required TResult Function(_ApodStateFailure value) failure,
-    required TResult Function(_ApodStateConfirmed value) success,
+    required TResult Function(_ApodStateSuccess value) success,
   }) {
     return failure(this);
   }
@@ -428,7 +428,7 @@ class _$_ApodStateFailure implements _ApodStateFailure {
     TResult? Function(_ApodStateInitial value)? initial,
     TResult? Function(_ApodStateLoading value)? loading,
     TResult? Function(_ApodStateFailure value)? failure,
-    TResult? Function(_ApodStateConfirmed value)? success,
+    TResult? Function(_ApodStateSuccess value)? success,
   }) {
     return failure?.call(this);
   }
@@ -439,7 +439,7 @@ class _$_ApodStateFailure implements _ApodStateFailure {
     TResult Function(_ApodStateInitial value)? initial,
     TResult Function(_ApodStateLoading value)? loading,
     TResult Function(_ApodStateFailure value)? failure,
-    TResult Function(_ApodStateConfirmed value)? success,
+    TResult Function(_ApodStateSuccess value)? success,
     required TResult orElse(),
   }) {
     if (failure != null) {
@@ -459,20 +459,20 @@ abstract class _ApodStateFailure implements ApodState {
 }
 
 /// @nodoc
-abstract class _$$_ApodStateConfirmedCopyWith<$Res> {
-  factory _$$_ApodStateConfirmedCopyWith(_$_ApodStateConfirmed value,
-          $Res Function(_$_ApodStateConfirmed) then) =
-      __$$_ApodStateConfirmedCopyWithImpl<$Res>;
+abstract class _$$_ApodStateSuccessCopyWith<$Res> {
+  factory _$$_ApodStateSuccessCopyWith(
+          _$_ApodStateSuccess value, $Res Function(_$_ApodStateSuccess) then) =
+      __$$_ApodStateSuccessCopyWithImpl<$Res>;
   @useResult
   $Res call({List<ApodEntity> apodEntity});
 }
 
 /// @nodoc
-class __$$_ApodStateConfirmedCopyWithImpl<$Res>
-    extends _$ApodStateCopyWithImpl<$Res, _$_ApodStateConfirmed>
-    implements _$$_ApodStateConfirmedCopyWith<$Res> {
-  __$$_ApodStateConfirmedCopyWithImpl(
-      _$_ApodStateConfirmed _value, $Res Function(_$_ApodStateConfirmed) _then)
+class __$$_ApodStateSuccessCopyWithImpl<$Res>
+    extends _$ApodStateCopyWithImpl<$Res, _$_ApodStateSuccess>
+    implements _$$_ApodStateSuccessCopyWith<$Res> {
+  __$$_ApodStateSuccessCopyWithImpl(
+      _$_ApodStateSuccess _value, $Res Function(_$_ApodStateSuccess) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -480,7 +480,7 @@ class __$$_ApodStateConfirmedCopyWithImpl<$Res>
   $Res call({
     Object? apodEntity = null,
   }) {
-    return _then(_$_ApodStateConfirmed(
+    return _then(_$_ApodStateSuccess(
       apodEntity: null == apodEntity
           ? _value._apodEntity
           : apodEntity // ignore: cast_nullable_to_non_nullable
@@ -491,8 +491,8 @@ class __$$_ApodStateConfirmedCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$_ApodStateConfirmed implements _ApodStateConfirmed {
-  const _$_ApodStateConfirmed({required final List<ApodEntity> apodEntity})
+class _$_ApodStateSuccess implements _ApodStateSuccess {
+  const _$_ApodStateSuccess({required final List<ApodEntity> apodEntity})
       : _apodEntity = apodEntity;
 
   final List<ApodEntity> _apodEntity;
@@ -512,7 +512,7 @@ class _$_ApodStateConfirmed implements _ApodStateConfirmed {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_ApodStateConfirmed &&
+            other is _$_ApodStateSuccess &&
             const DeepCollectionEquality()
                 .equals(other._apodEntity, _apodEntity));
   }
@@ -524,9 +524,8 @@ class _$_ApodStateConfirmed implements _ApodStateConfirmed {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_ApodStateConfirmedCopyWith<_$_ApodStateConfirmed> get copyWith =>
-      __$$_ApodStateConfirmedCopyWithImpl<_$_ApodStateConfirmed>(
-          this, _$identity);
+  _$$_ApodStateSuccessCopyWith<_$_ApodStateSuccess> get copyWith =>
+      __$$_ApodStateSuccessCopyWithImpl<_$_ApodStateSuccess>(this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -571,7 +570,7 @@ class _$_ApodStateConfirmed implements _ApodStateConfirmed {
     required TResult Function(_ApodStateInitial value) initial,
     required TResult Function(_ApodStateLoading value) loading,
     required TResult Function(_ApodStateFailure value) failure,
-    required TResult Function(_ApodStateConfirmed value) success,
+    required TResult Function(_ApodStateSuccess value) success,
   }) {
     return success(this);
   }
@@ -582,7 +581,7 @@ class _$_ApodStateConfirmed implements _ApodStateConfirmed {
     TResult? Function(_ApodStateInitial value)? initial,
     TResult? Function(_ApodStateLoading value)? loading,
     TResult? Function(_ApodStateFailure value)? failure,
-    TResult? Function(_ApodStateConfirmed value)? success,
+    TResult? Function(_ApodStateSuccess value)? success,
   }) {
     return success?.call(this);
   }
@@ -593,7 +592,7 @@ class _$_ApodStateConfirmed implements _ApodStateConfirmed {
     TResult Function(_ApodStateInitial value)? initial,
     TResult Function(_ApodStateLoading value)? loading,
     TResult Function(_ApodStateFailure value)? failure,
-    TResult Function(_ApodStateConfirmed value)? success,
+    TResult Function(_ApodStateSuccess value)? success,
     required TResult orElse(),
   }) {
     if (success != null) {
@@ -603,12 +602,12 @@ class _$_ApodStateConfirmed implements _ApodStateConfirmed {
   }
 }
 
-abstract class _ApodStateConfirmed implements ApodState {
-  const factory _ApodStateConfirmed(
-      {required final List<ApodEntity> apodEntity}) = _$_ApodStateConfirmed;
+abstract class _ApodStateSuccess implements ApodState {
+  const factory _ApodStateSuccess(
+      {required final List<ApodEntity> apodEntity}) = _$_ApodStateSuccess;
 
   List<ApodEntity> get apodEntity;
   @JsonKey(ignore: true)
-  _$$_ApodStateConfirmedCopyWith<_$_ApodStateConfirmed> get copyWith =>
+  _$$_ApodStateSuccessCopyWith<_$_ApodStateSuccess> get copyWith =>
       throw _privateConstructorUsedError;
 }

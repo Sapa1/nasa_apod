@@ -20,6 +20,7 @@ class ApodDataSourceImpl implements ApodDataSource {
       );
       //TODO: fazer tratamento para não receber video
       if (result.data is List) {
+        print(result.statusCode);
         return ApodResponse.fromMap(result.data);
       } else {
         return ApodResponse.fromMap([result.data]);

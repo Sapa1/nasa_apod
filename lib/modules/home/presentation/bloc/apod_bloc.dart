@@ -18,17 +18,37 @@ class ApodBloc extends Bloc<ApodEvent, ApodState> {
     ApodEvent event,
     Emitter<ApodState> emit,
   ) async {
-    // emit(const ApodState.loading());
     await event.when(
       getApod: (startDate) async {
+        emit(const ApodState.loading());
         final response = await getApodUseCase(startDate);
 
         emit(
-          response.fold((failure) => ApodState.failure(failure.message),
-              (result) {
-            return ApodState.success(
-                apodEntity: result.entity.reversed.toList());
-          }),
+          response.fold(
+            (failure) => ApodState.failure(failure.message),
+            (result) {
+              return ApodState.success(
+                apodEntity: result.entity.reversed.toList(),
+              );
+            },
+          ),
+        );
+      },
+      getMoreApods: (startDate) async {
+        // final currentState = (state as ApodStateSuccess);
+        // emit(ApodState.gustaLoading(apodEntity: currentState.apodEntity));
+
+        final response = await getApodUseCase(startDate);
+
+        emit(
+          response.fold(
+            (failure) => ApodState.failure(failure.message),
+            (result) {
+              return ApodState.success(
+                apodEntity: result.entity.reversed.toList(),
+              );
+            },
+          ),
         );
       },
     );
