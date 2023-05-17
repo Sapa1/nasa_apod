@@ -1,5 +1,3 @@
-import 'dart:convert';
-
 import 'package:equatable/equatable.dart';
 
 class ApodEntity extends Equatable {
@@ -15,29 +13,6 @@ class ApodEntity extends Equatable {
     required this.title,
   });
 
-  ApodEntity copyWith({
-    String? date,
-    String? description,
-    String? url,
-    String? title,
-  }) {
-    return ApodEntity(
-      date: date ?? this.date,
-      description: description ?? this.description,
-      url: url ?? this.url,
-      title: title ?? this.title,
-    );
-  }
-
-  Map<String, dynamic> toMap() {
-    return {
-      'date': date,
-      'explanation': description,
-      'hdurl': url,
-      'title': title,
-    };
-  }
-
   factory ApodEntity.fromMap(Map<String, dynamic> map) {
     return ApodEntity(
       date: map['date'] ?? '',
@@ -46,11 +21,6 @@ class ApodEntity extends Equatable {
       title: map['title'] ?? '',
     );
   }
-
-  String toJson() => json.encode(toMap());
-
-  factory ApodEntity.fromJson(String source) =>
-      ApodEntity.fromMap(json.decode(source));
 
   @override
   String toString() {

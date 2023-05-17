@@ -6,4 +6,6 @@ part 'apod_event.freezed.dart';
 abstract class ApodEvent with _$ApodEvent {
   const factory ApodEvent.getApod({required String startDate}) =
       _ApodEventGetApod;
+  const factory ApodEvent.getMoreApods({required String startDate}) =
+      _ApodEventGetMoreApods;
 }

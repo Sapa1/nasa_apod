@@ -61,11 +61,12 @@ class TextFormFieldWidget extends StatelessWidget {
           hintText: hintText,
           hintStyle: hintStyle,
           contentPadding: const EdgeInsets.only(left: 10),
+          constraints: const BoxConstraints(minHeight: 20),
           isDense: true,
           filled: true,
           enabledBorder: enabledBorder,
           focusedBorder: focusedBorder,
-          suffixIcon: const Icon(Icons.search),
+          suffixIcon: const Icon(Icons.search, color: AppColors.gray),
         ),
       );
 }

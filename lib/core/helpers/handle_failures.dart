@@ -1,40 +1,10 @@
 import 'package:dio/dio.dart';
-import 'package:flutter/foundation.dart';
 
 import '../connection_status/connection_status.dart';
 import '../error/failure.dart';
 
 mixin HandleFailures {
   Future<Failure> handleFailure(
-    ConnectionStatus connectionStatus,
-    Object exception,
-    StackTrace stackTrace,
-  ) async {
-    if (kIsWeb) {
-      return handleFailureWeb(exception, stackTrace);
-    } else {
-      return handleFailureMobile(connectionStatus, exception, stackTrace);
-    }
-  }
-
-  Future<Failure> handleFailureWeb(
-    Object exception,
-    StackTrace stackTrace,
-  ) async {
-    if (exception is DioError) {
-      if (exception.response?.data != null) {
-        return ServerFailure(
-            message: handleMessage(
-                (exception.response?.data as Map<String, dynamic>)['message']));
-      } else {
-        return ServerFailure(message: handleMessage(''));
-      }
-    } else {
-      return ServerFailure(message: handleMessage(null));
-    }
-  }
-
-  Future<Failure> handleFailureMobile(
     ConnectionStatus connectionStatus,
     Object exception,
     StackTrace stackTrace,

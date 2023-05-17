@@ -58,7 +58,7 @@ class ImageApodWidget extends StatelessWidget {
                         width: MediaQuery.of(context).size.width * 0.4,
                         child: Text(
                           title,
-                          style: AppTextStyles.montserrat16w700
+                          style: AppTextStyles.oldStandardTT16bold
                               .copyWith(color: Colors.white),
                           maxLines: 2,
                           overflow: TextOverflow.ellipsis,
@@ -66,7 +66,7 @@ class ImageApodWidget extends StatelessWidget {
                       ),
                       Text(
                         date,
-                        style: AppTextStyles.montserrat13w400
+                        style: AppTextStyles.oldStandardTT13w400
                             .copyWith(color: Colors.white),
                       ),
                     ],
@@ -92,7 +92,7 @@ class ImageApodWidget extends StatelessWidget {
             children: [
               Text(
                 title,
-                style: AppTextStyles.montserrat16w700
+                style: AppTextStyles.oldStandardTT16bold
                     .copyWith(color: Colors.black),
               ),
             ],

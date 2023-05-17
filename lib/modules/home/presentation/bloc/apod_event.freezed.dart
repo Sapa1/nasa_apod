@@ -20,32 +20,38 @@ mixin _$ApodEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(String startDate) getApod,
+    required TResult Function(String startDate) getMoreApods,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(String startDate)? getApod,
+    TResult? Function(String startDate)? getMoreApods,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(String startDate)? getApod,
+    TResult Function(String startDate)? getMoreApods,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_ApodEventGetApod value) getApod,
+    required TResult Function(_ApodEventGetMoreApods value) getMoreApods,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_ApodEventGetApod value)? getApod,
+    TResult? Function(_ApodEventGetMoreApods value)? getMoreApods,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_ApodEventGetApod value)? getApod,
+    TResult Function(_ApodEventGetMoreApods value)? getMoreApods,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -155,6 +161,7 @@ class _$_ApodEventGetApod implements _ApodEventGetApod {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(String startDate) getApod,
+    required TResult Function(String startDate) getMoreApods,
   }) {
     return getApod(startDate);
   }
@@ -163,6 +170,7 @@ class _$_ApodEventGetApod implements _ApodEventGetApod {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(String startDate)? getApod,
+    TResult? Function(String startDate)? getMoreApods,
   }) {
     return getApod?.call(startDate);
   }
@@ -171,6 +179,7 @@ class _$_ApodEventGetApod implements _ApodEventGetApod {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(String startDate)? getApod,
+    TResult Function(String startDate)? getMoreApods,
     required TResult orElse(),
   }) {
     if (getApod != null) {
@@ -183,6 +192,7 @@ class _$_ApodEventGetApod implements _ApodEventGetApod {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_ApodEventGetApod value) getApod,
+    required TResult Function(_ApodEventGetMoreApods value) getMoreApods,
   }) {
     return getApod(this);
   }
@@ -191,6 +201,7 @@ class _$_ApodEventGetApod implements _ApodEventGetApod {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_ApodEventGetApod value)? getApod,
+    TResult? Function(_ApodEventGetMoreApods value)? getMoreApods,
   }) {
     return getApod?.call(this);
   }
@@ -199,6 +210,7 @@ class _$_ApodEventGetApod implements _ApodEventGetApod {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_ApodEventGetApod value)? getApod,
+    TResult Function(_ApodEventGetMoreApods value)? getMoreApods,
     required TResult orElse(),
   }) {
     if (getApod != null) {
@@ -217,5 +229,145 @@ abstract class _ApodEventGetApod implements ApodEvent {
   @override
   @JsonKey(ignore: true)
   _$$_ApodEventGetApodCopyWith<_$_ApodEventGetApod> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$_ApodEventGetMoreApodsCopyWith<$Res>
+    implements $ApodEventCopyWith<$Res> {
+  factory _$$_ApodEventGetMoreApodsCopyWith(_$_ApodEventGetMoreApods value,
+          $Res Function(_$_ApodEventGetMoreApods) then) =
+      __$$_ApodEventGetMoreApodsCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call({String startDate});
+}
+
+/// @nodoc
+class __$$_ApodEventGetMoreApodsCopyWithImpl<$Res>
+    extends _$ApodEventCopyWithImpl<$Res, _$_ApodEventGetMoreApods>
+    implements _$$_ApodEventGetMoreApodsCopyWith<$Res> {
+  __$$_ApodEventGetMoreApodsCopyWithImpl(_$_ApodEventGetMoreApods _value,
+      $Res Function(_$_ApodEventGetMoreApods) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? startDate = null,
+  }) {
+    return _then(_$_ApodEventGetMoreApods(
+      startDate: null == startDate
+          ? _value.startDate
+          : startDate // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$_ApodEventGetMoreApods implements _ApodEventGetMoreApods {
+  const _$_ApodEventGetMoreApods({required this.startDate});
+
+  @override
+  final String startDate;
+
+  @override
+  String toString() {
+    return 'ApodEvent.getMoreApods(startDate: $startDate)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$_ApodEventGetMoreApods &&
+            (identical(other.startDate, startDate) ||
+                other.startDate == startDate));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, startDate);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$_ApodEventGetMoreApodsCopyWith<_$_ApodEventGetMoreApods> get copyWith =>
+      __$$_ApodEventGetMoreApodsCopyWithImpl<_$_ApodEventGetMoreApods>(
+          this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(String startDate) getApod,
+    required TResult Function(String startDate) getMoreApods,
+  }) {
+    return getMoreApods(startDate);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(String startDate)? getApod,
+    TResult? Function(String startDate)? getMoreApods,
+  }) {
+    return getMoreApods?.call(startDate);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(String startDate)? getApod,
+    TResult Function(String startDate)? getMoreApods,
+    required TResult orElse(),
+  }) {
+    if (getMoreApods != null) {
+      return getMoreApods(startDate);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_ApodEventGetApod value) getApod,
+    required TResult Function(_ApodEventGetMoreApods value) getMoreApods,
+  }) {
+    return getMoreApods(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_ApodEventGetApod value)? getApod,
+    TResult? Function(_ApodEventGetMoreApods value)? getMoreApods,
+  }) {
+    return getMoreApods?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_ApodEventGetApod value)? getApod,
+    TResult Function(_ApodEventGetMoreApods value)? getMoreApods,
+    required TResult orElse(),
+  }) {
+    if (getMoreApods != null) {
+      return getMoreApods(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _ApodEventGetMoreApods implements ApodEvent {
+  const factory _ApodEventGetMoreApods({required final String startDate}) =
+      _$_ApodEventGetMoreApods;
+
+  @override
+  String get startDate;
+  @override
+  @JsonKey(ignore: true)
+  _$$_ApodEventGetMoreApodsCopyWith<_$_ApodEventGetMoreApods> get copyWith =>
       throw _privateConstructorUsedError;
 }
