@@ -16,17 +16,17 @@ class ApodDataSourceImpl implements ApodDataSource {
         '',
         queryParameters: {
           "start_date": startDate,
+          "thumbs": true,
         },
       );
-      //TODO: fazer tratamento para não receber video
+
       if (result.data is List) {
-        print(result.statusCode);
         return ApodResponse.fromMap(result.data);
       } else {
         return ApodResponse.fromMap([result.data]);
       }
     } catch (e) {
-      debugPrint('Caindo aq sem net $e');
+      debugPrint('Error $e');
       rethrow;
     }
   }

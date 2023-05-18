@@ -35,9 +35,6 @@ class ApodBloc extends Bloc<ApodEvent, ApodState> {
         );
       },
       getMoreApods: (startDate) async {
-        // final currentState = (state as ApodStateSuccess);
-        // emit(ApodState.gustaLoading(apodEntity: currentState.apodEntity));
-
         final response = await getApodUseCase(startDate);
 
         emit(
