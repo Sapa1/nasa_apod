@@ -3,7 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:nasa_apod/core/const/strings.dart';
 import 'package:nasa_apod/modules/home/presentation/page/sections/apod_section.dart';
-import 'package:nasa_apod/modules/home/presentation/widget/loading_apod_widget.dart';
+import 'package:nasa_apod/modules/home/presentation/page/sections/loading_apod_section.dart';
 
 import '../../../../core/const/images.dart';
 import '../../../../core/helpers/keyboard_manager.dart';
@@ -11,8 +11,8 @@ import '../../domain/entities/apod_entity.dart';
 import '../bloc/apod_bloc.dart';
 import '../bloc/apod_event.dart';
 import '../bloc/apod_state.dart';
-import '../widget/fail_load_page_widget.dart';
-import '../widget/toast_widget.dart';
+import 'sections/fail_load_page_section.dart';
+import 'sections/toast_section.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -54,7 +54,7 @@ class _HomePageState extends State<HomePage> with KeyboardManager {
               listener: (context, stateListener) {
                 stateListener.maybeWhen(
                   orElse: () => null,
-                  failure: (message) => ToastWidget.toast(
+                  failure: (message) => ToastSection.toast(
                     context: context,
                     message: message,
                     title: AppStrings.error,
@@ -67,8 +67,8 @@ class _HomePageState extends State<HomePage> with KeyboardManager {
                 builder: (context, state) {
                   return state.maybeWhen(
                     orElse: () => const SizedBox(),
-                    failure: (message) => const FailLoadPageWidget(),
-                    loading: () => const LoadingApodWidget(),
+                    failure: (message) => const FailLoadPageSection(),
+                    loading: () => const LoadingApodSection(),
                     success: (entity) => ApodSection(
                       apodEntityList: entity,
                       apodBloc: _apodBloc,
