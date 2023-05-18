@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_modular/flutter_modular.dart';
+import 'package:nasa_apod/core/const/strings.dart';
 import 'package:nasa_apod/modules/home/presentation/page/sections/apod_section.dart';
-import 'package:nasa_apod/modules/home/presentation/page/sections/loading_apod_section.dart';
+import 'package:nasa_apod/modules/home/presentation/widget/loading_apod_widget.dart';
 
 import '../../../../core/const/images.dart';
 import '../../../../core/helpers/keyboard_manager.dart';
@@ -10,6 +11,8 @@ import '../../domain/entities/apod_entity.dart';
 import '../bloc/apod_bloc.dart';
 import '../bloc/apod_event.dart';
 import '../bloc/apod_state.dart';
+import '../widget/fail_load_page_widget.dart';
+import '../widget/toast_widget.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -46,33 +49,33 @@ class _HomePageState extends State<HomePage> with KeyboardManager {
         onPanCancel: () => _onTap(context),
         child: Scaffold(
           body: SafeArea(
-            child: BlocBuilder<ApodBloc, ApodState>(
+            child: BlocListener<ApodBloc, ApodState>(
               bloc: _apodBloc,
-              builder: (context, state) {
-                return state.maybeWhen(
-                  orElse: () => const SizedBox(),
-                  failure: (e) => const Center(
-                    child: Text('failure'),
-                  ),
-                  loading: () => const LoadingApodSection(),
-                  // tentativeLoading: (entity) => Stack(
-                  //   children: [
-                  //     ApodSection(
-                  //       apodEntityList: entity,
-                  //       apodBloc: _apodBloc,
-                  //     ),
-                  //     const Positioned(
-                  //       bottom: 0,
-                  //       child: CircularProgressIndicator(),
-                  //     ),
-                  //   ],
-                  // ),
-                  success: (entity) => ApodSection(
-                    apodEntityList: entity,
-                    apodBloc: _apodBloc,
+              listener: (context, stateListener) {
+                stateListener.maybeWhen(
+                  orElse: () => null,
+                  failure: (message) => ToastWidget.toast(
+                    context: context,
+                    message: message,
+                    title: AppStrings.error,
+                    duration: const Duration(seconds: 3),
                   ),
                 );
               },
+              child: BlocBuilder<ApodBloc, ApodState>(
+                bloc: _apodBloc,
+                builder: (context, state) {
+                  return state.maybeWhen(
+                    orElse: () => const SizedBox(),
+                    failure: (message) => const FailLoadPageWidget(),
+                    loading: () => const LoadingApodWidget(),
+                    success: (entity) => ApodSection(
+                      apodEntityList: entity,
+                      apodBloc: _apodBloc,
+                    ),
+                  );
+                },
+              ),
             ),
           ),
         ),

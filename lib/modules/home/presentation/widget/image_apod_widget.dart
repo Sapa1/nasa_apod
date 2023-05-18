@@ -1,10 +1,12 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:nasa_apod/core/const/images.dart';
+import 'package:nasa_apod/core/styles/colors.dart';
 import 'package:nasa_apod/core/styles/text_styles.dart';
+import 'package:nasa_apod/modules/home/presentation/widget/placeholder_image.dart';
 
+import '../../../../core/const/strings.dart';
 import '../../../../utils/strings_utils.dart';
-
-//TODO: refatorar widget
 
 enum WidgetType { mainInfo, allInfo }
 
@@ -46,7 +48,7 @@ class ImageApodWidget extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.start,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                image(context),
+                imageMainPage(context),
                 const SizedBox(width: 10),
                 SizedBox(
                   height: MediaQuery.of(context).size.width * 0.5,
@@ -58,7 +60,7 @@ class ImageApodWidget extends StatelessWidget {
                         width: MediaQuery.of(context).size.width * 0.4,
                         child: Text(
                           title,
-                          style: AppTextStyles.oldStandardTT16bold
+                          style: AppTextStyles.blinker16bold
                               .copyWith(color: Colors.white),
                           maxLines: 2,
                           overflow: TextOverflow.ellipsis,
@@ -66,7 +68,7 @@ class ImageApodWidget extends StatelessWidget {
                       ),
                       Text(
                         date,
-                        style: AppTextStyles.oldStandardTT13w400
+                        style: AppTextStyles.blinker13w400
                             .copyWith(color: Colors.white),
                       ),
                     ],
@@ -82,70 +84,84 @@ class ImageApodWidget extends StatelessWidget {
 
   Widget allInfo(BuildContext context) {
     return Column(
-      mainAxisSize: MainAxisSize.min,
+      crossAxisAlignment: CrossAxisAlignment.start,
+      mainAxisAlignment: MainAxisAlignment.center,
       children: [
-        const SizedBox(height: 20),
-        SizedBox(
+        imageDetailedPage(context),
+        Text(
+          date,
+          style: AppTextStyles.blinker13w400.copyWith(color: Colors.white),
+        ),
+        const SizedBox(height: 30),
+        Container(
+          padding: const EdgeInsets.only(top: 12, left: 10),
           width: MediaQuery.of(context).size.width,
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.start,
-            children: [
-              Text(
-                title,
-                style: AppTextStyles.oldStandardTT16bold
-                    .copyWith(color: Colors.black),
-              ),
-            ],
+          height: 50,
+          decoration: BoxDecoration(
+            borderRadius: const BorderRadius.only(
+              topRight: Radius.circular(8),
+              topLeft: Radius.circular(8),
+            ),
+            border: Border.all(
+              color: AppColors.gray,
+            ),
+          ),
+          child: Text(
+            AppStrings.description,
+            style: AppTextStyles.blinker16bold.copyWith(
+              color: Colors.white,
+            ),
           ),
         ),
-        const SizedBox(height: 5),
-        Padding(
-          padding: const EdgeInsets.only(top: 5, bottom: 5),
-          child: GestureDetector(
-            onTap: onTap,
-            child: image(context),
-          ),
-        ),
-        SizedBox(
+        Container(
           width: MediaQuery.of(context).size.width,
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.start,
-            children: [
-              Text(date),
-            ],
+          decoration: BoxDecoration(
+            borderRadius: const BorderRadius.only(
+              bottomLeft: Radius.circular(8),
+              bottomRight: Radius.circular(8),
+            ),
+            border: Border.all(
+              color: AppColors.gray,
+            ),
+          ),
+          padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 15),
+          child: Text(
+            description,
+            style: AppTextStyles.blinkerTT16normal.copyWith(
+              color: Colors.white,
+            ),
           ),
         ),
-        const SizedBox(height: 20),
       ],
     );
   }
 
-  Widget image(BuildContext context) => ClipRRect(
-        borderRadius: const BorderRadius.all(Radius.circular(8)),
-        child: SizedBox(
-          width: MediaQuery.of(context).size.width * 0.5,
-          height: MediaQuery.of(context).size.width * 0.5,
-          child: CachedNetworkImage(
-            imageUrl: url,
-            useOldImageOnUrlChange: true,
-            cacheKey: StringUtils.getImageNameFromUrl(url),
-            placeholder: (_, __) => const Text('carregadndo'),
-            errorWidget: (context, error, stackTrace) => const SizedBox(),
-            fit: BoxFit.cover,
+  Widget imageMainPage(BuildContext context) => SizedBox(
+        width: MediaQuery.of(context).size.width * 0.5,
+        height: MediaQuery.of(context).size.width * 0.5,
+        child: CachedNetworkImage(
+          imageUrl: url,
+          useOldImageOnUrlChange: true,
+          cacheKey: StringUtils.getImageNameFromUrl(url),
+          placeholder: (_, __) => const PlaceholderImage(),
+          errorWidget: (context, error, stackTrace) => Image.asset(
+            AppImages.imageNotFound,
           ),
+          fit: BoxFit.cover,
         ),
       );
-  // Widget image(BuildContext context) => ClipRRect(
-  //       child: SizedBox(
-  //         width: MediaQuery.of(context).size.width,
-  //         child: CachedNetworkImage(
-  //           imageUrl: url,
-  //           useOldImageOnUrlChange: true,
-  //           cacheKey: StringUtils.getImageNameFromUrl(url),
-  //           placeholder: (_, __) => const Text('carregadndo'),
-  //           errorWidget: (context, error, stackTrace) => const SizedBox(),
-  //           fit: BoxFit.cover,
-  //         ),
-  //       ),
-  //     );
+
+  Widget imageDetailedPage(BuildContext context) => SizedBox(
+        width: MediaQuery.of(context).size.width,
+        child: CachedNetworkImage(
+          imageUrl: url,
+          useOldImageOnUrlChange: true,
+          cacheKey: StringUtils.getImageNameFromUrl(url),
+          placeholder: (_, __) => const PlaceholderImage(),
+          errorWidget: (context, error, stackTrace) => Image.asset(
+            AppImages.imageNotFound,
+          ),
+          fit: BoxFit.cover,
+        ),
+      );
 }

@@ -14,12 +14,21 @@ class ApodEntity extends Equatable {
   });
 
   factory ApodEntity.fromMap(Map<String, dynamic> map) {
-    return ApodEntity(
-      date: map['date'] ?? '',
-      description: map['explanation'] ?? '',
-      url: map['hdurl'] ?? '',
-      title: map['title'] ?? '',
-    );
+    if (map['thumbnail_url'] != null) {
+      return ApodEntity(
+        date: map['date'] ?? '',
+        description: map['explanation'] ?? '',
+        url: map['thumbnail_url'] ?? '',
+        title: map['title'] ?? '',
+      );
+    } else {
+      return ApodEntity(
+        date: map['date'] ?? '',
+        description: map['explanation'] ?? '',
+        url: map['hdurl'] ?? '',
+        title: map['title'] ?? '',
+      );
+    }
   }
 
   @override
