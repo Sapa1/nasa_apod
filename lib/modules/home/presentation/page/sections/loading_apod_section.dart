@@ -3,14 +3,14 @@ import 'package:lottie/lottie.dart';
 import 'package:nasa_apod/core/const/images.dart';
 import 'package:nasa_apod/core/styles/text_styles.dart';
 
-class LoadingApodWidget extends StatefulWidget {
-  const LoadingApodWidget({super.key});
+class LoadingApodSection extends StatefulWidget {
+  const LoadingApodSection({super.key});
 
   @override
-  State<LoadingApodWidget> createState() => _LoadingApodWidgetState();
+  State<LoadingApodSection> createState() => _LoadingApodSectionState();
 }
 
-class _LoadingApodWidgetState extends State<LoadingApodWidget>
+class _LoadingApodSectionState extends State<LoadingApodSection>
     with SingleTickerProviderStateMixin {
   late final AnimationController _animationController;
   late final Animation<String> _textAnimation;

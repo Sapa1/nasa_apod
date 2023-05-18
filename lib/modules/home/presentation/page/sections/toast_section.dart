@@ -1,9 +1,9 @@
 import 'package:another_flushbar/flushbar.dart';
 import 'package:flutter/material.dart';
 
-import '../../../../core/styles/colors.dart';
+import '../../../../../core/styles/colors.dart';
 
-abstract class ToastWidget {
+abstract class ToastSection {
   static Future toast({
     required BuildContext context,
     required String title,

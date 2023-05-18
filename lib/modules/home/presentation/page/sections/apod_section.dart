@@ -3,7 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:nasa_apod/core/connection_status/connection_status_impl.dart';
-import 'package:nasa_apod/modules/home/presentation/widget/toast_widget.dart';
+import 'package:nasa_apod/modules/home/presentation/page/sections/toast_section.dart';
 
 import '../../../../../core/connection_status/connection_status.dart';
 import '../../../../../core/const/images.dart';
@@ -16,8 +16,8 @@ import '../../bloc/apod_bloc.dart';
 import '../../bloc/apod_event.dart';
 import '../../bloc/apod_state.dart';
 import '../../widget/image_apod_widget.dart';
-import '../../widget/loading_more_apods_widget.dart';
 import '../../widget/text_form_field_widget.dart';
+import 'loading_more_apods_section.dart';
 
 class ApodSection extends StatefulWidget {
   final List<ApodEntity> apodEntityList;
@@ -78,7 +78,7 @@ class _ApodSectionState extends State<ApodSection> {
       listener: (context, state) {
         state.maybeWhen(
           orElse: () => null,
-          failure: (message) => ToastWidget.toast(
+          failure: (message) => ToastSection.toast(
             context: context,
             message: message,
             title: 'Error',
@@ -142,7 +142,7 @@ class _ApodSectionState extends State<ApodSection> {
                   );
                 } else {
                   return isLoading
-                      ? const LoadMoreApodsWidget()
+                      ? const LoadMoreApodsSection()
                       : const SizedBox();
                 }
               },

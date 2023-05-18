@@ -1,12 +1,12 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
-import 'package:nasa_apod/core/const/images.dart';
 import 'package:nasa_apod/core/styles/colors.dart';
 import 'package:nasa_apod/core/styles/text_styles.dart';
-import 'package:nasa_apod/modules/home/presentation/widget/placeholder_image.dart';
+import 'package:nasa_apod/modules/home/presentation/widget/placeholder_image_widget.dart';
 
 import '../../../../core/const/strings.dart';
 import '../../../../utils/strings_utils.dart';
+import 'error_image_widget.dart';
 
 enum WidgetType { mainInfo, allInfo }
 
@@ -143,10 +143,8 @@ class ImageApodWidget extends StatelessWidget {
           imageUrl: url,
           useOldImageOnUrlChange: true,
           cacheKey: StringUtils.getImageNameFromUrl(url),
-          placeholder: (_, __) => const PlaceholderImage(),
-          errorWidget: (context, error, stackTrace) => Image.asset(
-            AppImages.imageNotFound,
-          ),
+          placeholder: (_, __) => const PlaceholderImageWidget(),
+          errorWidget: (context, error, stackTrace) => const ErrorImageWidget(),
           fit: BoxFit.cover,
         ),
       );
@@ -157,10 +155,8 @@ class ImageApodWidget extends StatelessWidget {
           imageUrl: url,
           useOldImageOnUrlChange: true,
           cacheKey: StringUtils.getImageNameFromUrl(url),
-          placeholder: (_, __) => const PlaceholderImage(),
-          errorWidget: (context, error, stackTrace) => Image.asset(
-            AppImages.imageNotFound,
-          ),
+          placeholder: (_, __) => const PlaceholderImageWidget(),
+          errorWidget: (context, error, stackTrace) => const ErrorImageWidget(),
           fit: BoxFit.cover,
         ),
       );
